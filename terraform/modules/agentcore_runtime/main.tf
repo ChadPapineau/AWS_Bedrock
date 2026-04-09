@@ -59,7 +59,10 @@ resource "aws_iam_role" "runtime" {
         Action = "sts:AssumeRole"
         Effect = "Allow"
         Principal = {
-          Service = "bedrock.amazonaws.com"
+          Service = [
+            "bedrock.amazonaws.com",
+            "bedrock-agentcore.amazonaws.com"
+          ]
         }
       }
     ]
@@ -79,7 +82,11 @@ resource "aws_iam_role_policy" "runtime_bedrock" {
           "bedrock:InvokeModel",
           "bedrock:InvokeModelWithResponseStream",
         ]
-        Resource = "arn:aws:bedrock:${var.region}::foundation-model/*"
+        Resource = [
+          "arn:aws:bedrock:*::foundation-model/*",
+          "arn:aws:bedrock:*:${var.account_id}:inference-profile/*",
+          "arn:aws:bedrock:*::inference-profile/*",
+        ]
       },
       {
         Effect = "Allow"

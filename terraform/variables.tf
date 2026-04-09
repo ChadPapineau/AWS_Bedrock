@@ -7,7 +7,7 @@ variable "project_name" {
 variable "aws_region" {
   description = "AWS region for deployment"
   type        = string
-  default     = "us-east-1"
+  default     = "ca-central-1"
 }
 
 variable "environment" {
@@ -24,7 +24,7 @@ variable "environment" {
 variable "bedrock_model_id" {
   description = "Bedrock model ID for the agents"
   type        = string
-  default     = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
+  default     = "us.anthropic.claude-sonnet-4-6"
 }
 
 variable "runtime_memory_mb" {

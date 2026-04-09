@@ -69,11 +69,12 @@ def create_planner_agent() -> Agent:
         region_name=settings.aws_region,
         max_tokens=model_cfg.max_tokens,
         temperature=model_cfg.temperature,
-        top_p=model_cfg.top_p,
     )
 
     return Agent(
         model=model,
+        name="Planner",
+        description="Strategic contextualizer -- translates research into actionable plans for the lab environment.",
         system_prompt=PLANNER_SYSTEM_PROMPT,
         tools=[file_read, file_write],
     )

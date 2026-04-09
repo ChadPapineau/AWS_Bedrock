@@ -10,10 +10,9 @@ from pydantic_settings import BaseSettings
 class BedrockModelConfig(BaseSettings):
     """Per-agent model configuration with sensible defaults."""
 
-    model_id: str = Field(default="us.anthropic.claude-3-5-sonnet-20241022-v2:0")
+    model_id: str = Field(default="us.anthropic.claude-sonnet-4-6")
     max_tokens: int = Field(default=4096)
     temperature: float = Field(default=0.7)
-    top_p: float = Field(default=0.9)
 
 
 class Settings(BaseSettings):
@@ -22,12 +21,12 @@ class Settings(BaseSettings):
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
     # AWS
-    aws_region: str = Field(default="us-east-1", alias="AWS_REGION")
+    aws_region: str = Field(default="ca-central-1", alias="AWS_REGION")
     aws_profile: str | None = Field(default=None, alias="AWS_PROFILE")
 
     # Bedrock defaults
     bedrock_model_id: str = Field(
-        default="us.anthropic.claude-3-5-sonnet-20241022-v2:0",
+        default="us.anthropic.claude-sonnet-4-6",
         alias="BEDROCK_MODEL_ID",
     )
     bedrock_max_tokens: int = Field(default=4096, alias="BEDROCK_MAX_TOKENS")

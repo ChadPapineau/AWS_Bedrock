@@ -77,11 +77,12 @@ def create_lab_orchestrator_agent() -> Agent:
         region_name=settings.aws_region,
         max_tokens=model_cfg.max_tokens,
         temperature=model_cfg.temperature,
-        top_p=model_cfg.top_p,
     )
 
     return Agent(
         model=model,
+        name="Lab Orchestrator",
+        description="Senior technical consultant -- provides architecture guidance, implementation strategy, and hands-on lab assistance.",
         system_prompt=LAB_ORCHESTRATOR_SYSTEM_PROMPT,
         tools=[python_repl, shell_exec, file_read, file_write, architecture_review],
     )

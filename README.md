@@ -66,7 +66,7 @@ cp .env.example .env
 Key variables:
 | Variable | Description | Required |
 |---|---|---|
-| `AWS_REGION` | AWS region (default: us-east-1) | Yes |
+| `AWS_REGION` | AWS region (default: ca-central-1) | Yes |
 | `BEDROCK_MODEL_ID` | Claude model ID | Yes |
 | `TAVILY_API_KEY` | Tavily API key for web search | For Scout |
 | `GITHUB_TOKEN` | GitHub PAT for repo search | For Scout |
@@ -96,7 +96,7 @@ pytest -v
 
 ```bash
 # Authenticate with ECR
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region ca-central-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.ca-central-1.amazonaws.com
 
 # Build and tag
 docker build -t agentcore-swarm .
@@ -270,7 +270,7 @@ Discovery & Context then computes risk scores based on:
 terraform destroy -target=module.cyberark_scanner
 
 # Or delete the CloudFormation stack directly
-aws cloudformation delete-stack --stack-name cyberark-discovery --region us-east-1
+aws cloudformation delete-stack --stack-name cyberark-discovery --region ca-central-1
 ```
 
 ## Configuration
@@ -278,9 +278,9 @@ aws cloudformation delete-stack --stack-name cyberark-discovery --region us-east
 Per-agent model overrides are supported via environment variables:
 
 ```bash
-SCOUT_MODEL_ID=us.anthropic.claude-3-5-sonnet-20241022-v2:0
-PLANNER_MODEL_ID=us.anthropic.claude-3-5-sonnet-20241022-v2:0
-LAB_MODEL_ID=us.anthropic.claude-3-5-sonnet-20241022-v2:0
+SCOUT_MODEL_ID=anthropic.claude-sonnet-4-6
+PLANNER_MODEL_ID=anthropic.claude-sonnet-4-6
+LAB_MODEL_ID=anthropic.claude-sonnet-4-6
 ```
 
 Temperature defaults are tuned per agent role (Scout: 0.6, Planner: 0.5, Lab Orchestrator: 0.7).

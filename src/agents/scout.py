@@ -60,11 +60,12 @@ def create_scout_agent() -> Agent:
         region_name=settings.aws_region,
         max_tokens=model_cfg.max_tokens,
         temperature=model_cfg.temperature,
-        top_p=model_cfg.top_p,
     )
 
     return Agent(
         model=model,
+        name="Scout",
+        description="Technology research specialist -- scans the web and GitHub for relevant projects and emerging tech.",
         system_prompt=SCOUT_SYSTEM_PROMPT,
         tools=[web_search, github_search, fetch_url],
     )
